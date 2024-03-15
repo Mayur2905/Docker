@@ -1,0 +1,23 @@
+$ docker ps  -- List all running containers
+$ docker run -d nginx -- Run a container in detached mode
+$ docker ps -- List all running containers
+$ docker run -d httpd -- Run a container in detached mode
+$ docker stop <container_id> -- Stop a container
+$ docker start <container_id>  -- Start a container
+$ docker ps -q -- List all running containers
+$ docker ps -qa -- List all containers
+$ docker run --name ubuntu_MG ubuntu -- Run a container with a name
+$ docker run -d --name ubuntu_MG ubuntu -- Run a container with a name in detached mode
+$ docker ps -a
+$ docker rm <container_id>-- Remove a container
+$ docker rename mayur <container_id> 
+$ docker rename <container_id> mayur -- Rename a container
+$ docker exec -it <container_id> 
+$ docker  exec -it <container_id> bash -- Execute a command in a running container
+$ docker exec -it <container_id> echo "Hello form mayur" >>index.html
+$ docker  exec -it <container_id> bash 
+$ docker inspect <container_id> -- Get detailed information about a container and its network
+$ docker rm <container_id> -- Remove a container
+$ docker images -- List all images
+$ docker image ls -- List all images
+$ docker rm <container_id> -- Remove an container image
