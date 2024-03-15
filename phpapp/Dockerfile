@@ -2,9 +2,13 @@ FROM phpmyadmin
 
 LABEL phpmyadmin="latest"
 
-RUN wget https://github.com/jonastaedcke/prjct.git
+ADD source dest
 
-RUN mv prjct/* /var/www/html
+ADD https://github.com/jonastaedcke/prjct.git /var/www/html/
+
+WORKDIR /var/www/html/
+
+RUN cp -r /var/www/html/prjct/* .
 
 EXPOSE 80
 
