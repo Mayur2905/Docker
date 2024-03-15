@@ -4,11 +4,8 @@ LABEL phpmyadmin="latest"
 
 ADD source dest
 
-ADD https://github.com/jonastaedcke/prjct.git /var/www/html/
+ADD https://github.com/jonastaedcke/prjct.git .
 
-WORKDIR /var/www/html/
-
-RUN cp -r /var/www/html/prjct/* .
 
 EXPOSE 80
 
