@@ -19,7 +19,7 @@ WORKDIR /var/www/html/
 # Unzip the files
 RUN unzip yogast.zip
 
-RUN mv yoga-html/* .
+RUN mv yogast-html/* .
 
 EXPOSE 80
 # Start the httpd service
