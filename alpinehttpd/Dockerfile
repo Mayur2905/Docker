@@ -6,4 +6,4 @@ RUN echo "Hello World thsiis from httpd:alpine container $HOSTNAME" > /usr/local
 
 EXPOSE 80
 
-CMD [ "httpd" , "-DFORGROUND" ]
+CMD ["httpd" , "-DFOREGROUND"]
