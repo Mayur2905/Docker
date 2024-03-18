@@ -3,7 +3,6 @@ FROM python:3.10
 LABEL Folder="FlaskApp"
 LABEL Author="Mayur"
 
-WORKDIR /FlaskApp
 
 RUN pip install -r requirements.txt
 
