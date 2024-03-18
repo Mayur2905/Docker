@@ -1,20 +1,16 @@
-# Use an official Node.js runtime as the base image
-FROM node:14
+FROM ubuntu:latest
 
-# Set the working directory in the container
-WORKDIR /usr/src/app
+LABEL Folder="Nodejs-App"
+LABEL Author="Mayur"
 
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+RUN apt-get update -y
+RUN apt-get install -y nodejs
+RUN apt-get install -y npm
 
-# Install npm dependencies
-RUN npm install
-
-# Copy the rest of the application code to the working directory
 COPY . .
 
-# Expose the port the app runs on
+RUN npm install
+
 EXPOSE 3000
 
-# Start the Node.js application
-CMD ["npm", "start"]
+CMD ["node", "app.js"]
