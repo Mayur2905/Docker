@@ -1,7 +1,10 @@
-FROM node:latest
+FROM node::alpine
 
 LABEL Folder="Nodejs-App"
 LABEL Author="Mayur"
+
+
+COPY ./ ./
 
 RUN npm install
 
