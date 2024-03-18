@@ -4,19 +4,22 @@ LABEL Folder="Backend"
 LABEL Author="Mayur"
 
 USER root
-ADD https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.99/bin/apache-tomcat-8.5.99.tar.gz /opt
 
-RUN tar -xvzf /opt/apache-tomcat-8.5.99.tar.gz -C /opt
+WORKDIR /opt
+
+ADD https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.99/bin/apache-tomcat-8.5.99.tar.gz .
+
+RUN tar -xvzf /opt/apache-tomcat-8.5.99.tar.gz 
 
 RUN yum install java-11-openjdk-devel -y
 
 WORKDIR /opt/apache-tomcat-8.5.99/
 
-COPY /root/webapp/student.war /opt/apache-tomcat-8.5.99/webapps
+COPY /root/webapp/student.war webapps/student.war
 
-ADD https://github.com/AnupDudhe/DockerImage_studentapp_threetier/blob/main/Backend/context.xml /opt/apache-tomcat-8.5.99/conf/context.xml
+ADD https://github.com/AnupDudhe/DockerImage_studentapp_threetier/blob/main/Backend/context.xml conf/context.xml
 
-COPY /root/webapp/mysql-connector.jar /opt/apache-tomcat-8.5.99/lib/mysql-connector.jar
+COPY /root/webapp/mysql-connector.jar lib/mysql-connector.jar
 
 EXPOSE 8080
 
