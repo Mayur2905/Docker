@@ -4,10 +4,10 @@ LABEL Folder="FlaskApp"
 LABEL Author="Mayur"
 
 
-RUN pip install -r requirements.txt
 
+RUN pip install -r requirements.txt
 EXPOSE 5000
 
 # running the flask app
 
-CMD ["python", "app.py"]
+CMD ["flask" ,"run" ,"--host","0.0.0.0"]
