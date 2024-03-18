@@ -1,73 +1,52 @@
-![logo](https://image.ibb.co/g69ZDx/682111_cloud_512x512.png)
+# e-commerce with Node.js (MVC Pattern)
+---
+## Overview
+This project is focused in develop a Web MVC application using node.js, mysql and related technologies. It consists of a client facing web application that users can connect to in order to see the products being sold and make purchases, a dashboard frontend application that the employees can use to perform CRUD operations on the product catalog of the application, and a backend server that will be used to host api endpoints and the database to store all the information.
 
-# 5-Day Weather Forecast
-A simple application to display 5-day weather forecast using the OpenWeatherMap API. Built on top of my recently created [React-Redux-Sass Starter Kit](https://github.com/Gigacore/React-Redux-Sass-Starter).
+## Screenshots
 
-### Demo
-https://www.gigacore.in/demos/react-weather-forecast/
+![img](https://live.staticflickr.com/65535/50505312657_4afb5400e1_h.jpg)
 
-## Pre-requisites
-* Node.js 9.8.0 and above
+## Getting Started
+After cloning this repository, excute the folowing commands to test it:
 
-## Run
-```
-git clone
-cd react-weather-forecast
-npm i
-```
+* Installing dependencies:
+````
+npm install
+````
+* Configure your **.env** file:
+````
+Based on the file ".env.example"
+````
+* Creating a database:
+````
+mysql > create database "name in your .env file"
+````
+* Populating the database:
+````
+npm run database
+````
+* Starting the server (on port specified in the **.env** file):
+````
+npm run node
+````
+## Credentials
+The "database script" populates some **users** on DB with different roles. Use the following examples:
+* Regular user
+````
+email: user@user.com
+password: 123456
+````
+* Employee
+````
+email: employee@employee.com
+password: 123456
+````
+* Admin
+````
+email: admin@admin.com
+password: 123456
+````
+## Author
 
-
-## Start the dev server
-```
-
-npm run start:dev
-
-```
-
-## Build
-```
-
-npm run build
-
-```
-
-#### Notes:
-* Running the build bundles all your updates to ```bundle.js``` and ```bundle.css``` in dist folder.
-* If you insist to automate the build upon appending changes to files, use ```webpack --watch```
-
-## Test
-```
-
-npm run test
-
-```
-
-#### Notes:
-* Unit testing can be done manually by executing the above command.
-* It will be done automatically prior committing the updates to the repo as a pre-commit hook.
-
-### TODOs
-- [x] Provide an option for user to choose location of their choice by Name, Lat/Long etc
-- [x] Unit testing
-- [x] Identify and address edgecases.
-- [x] Revisit the code to improve performance. Such as sorting, looping, searching etc.
-- [x] Use a proper loading spinner icon on page load
-- [x] Detect location automatically
-- [x] Display hourly forecasts.
-- [ ] Add an option to choose Units in either Metric or Imperial.
-- [ ] Display higher-level of weather information such as Wind Speed, Precipitation etc
-- [ ] Fix lint issues and config the eslintrc to support "no-vars-used" for Imports
-- [ ] Better and more functional UI
-- [ ] Prevent fetching new data on every refresh by caching the data for a set duration of session.
-
-### Tech Stack
-
-* React.js
-* Redux
-* JavaScript (ES6)
-* HTML5
-* SASS
-* Jest + Enzyme
-
-#### The MIT License (MIT)
-MIT © 2018 Santhosh Sundar
+* **Guilherme Carra** - [GitHub](https://github.com/GuilhermeCarra/) - [Glitch](https://glitch.com/@GuilhermeCarra/) - [Linkedin](https://www.linkedin.com/in/guilherme-carra/)

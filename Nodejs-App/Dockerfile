@@ -1,15 +1,14 @@
-FROM node:alpine
+FROM node
 
-LABEL Folder="Nodejs-App"
-LABEL Author="Mayur"
+LABEL Folder="Node-Js"
+LABEL Author = "Mayur"
 
+WORKDIR /app
 
-COPY ./ ./
+COPY . .
 
 RUN npm install
 
-RUN npm start 
+RUN npm start
 
 EXPOSE 3000
-
-CMD ["node" ,"app.js"]
