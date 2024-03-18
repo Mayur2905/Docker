@@ -1,16 +1,20 @@
-FROM node
+# Use an official Node.js runtime as the base image
+FROM node:14
 
-LABEL Folder="Node-Js"
-LABEL Author = "Mayur"
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-WORKDIR /app
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
 
-COPY . .
-
+# Install npm dependencies
 RUN npm install
 
-RUN npm run database
+# Copy the rest of the application code to the working directory
+COPY . .
 
-RUN npm start
-
+# Expose the port the app runs on
 EXPOSE 3000
+
+# Start the Node.js application
+CMD ["npm", "start"]
