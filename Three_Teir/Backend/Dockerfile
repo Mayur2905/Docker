@@ -1,4 +1,4 @@
-FROM  mysql:lastest
+FROM  mysql:5.7
 ENV MYSQL_ROOT_PASSWORD=1234
 ENV MYSQL_DATABASE=studentapp
 ENV MYSQL_USER=root
