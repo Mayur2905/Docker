@@ -1,9 +1,11 @@
-FROM httpd:2.4
-
+FROM centos:7
 LABEL Folder="Frontend"
 LABEL Author="Mayur"
 
-ADD index.html /usr/local/apache2/htdocs/index.html
+RUN yum install httpd -y
+
+
+ADD index.html /var/www/html/index.html
 
 EXPOSE 80
 
