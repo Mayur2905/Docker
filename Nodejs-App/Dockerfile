@@ -1,16 +1,16 @@
 FROM ubuntu:latest
-
-LABEL Folder="Nodejs-App"
+LABEL app="nodejs"
 LABEL Author="Mayur"
 
-RUN apt-get update -y
-RUN apt-get install -y nodejs
-RUN apt-get install -y npm
+RUN  apt update 
+RUN  apt install nodejs npm -y
 
-COPY . .
+RUN git clone https://github.com/owanhunte/nodejs-chat-app.git
+
+WORKDIR nodejs-chat-app
 
 RUN npm install
 
 EXPOSE 3000
 
-CMD ["node", "app.js"]
+CMD [ "npm", "start" ]
