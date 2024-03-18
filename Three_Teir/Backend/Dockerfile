@@ -15,11 +15,11 @@ RUN yum install java-11-openjdk-devel -y
 
 WORKDIR /opt/apache-tomcat-8.5.99/
 
-COPY /root/webapp/student.war webapps/student.war
+COPY student.war webapps/student.war
 
 ADD context.xml conf/context.xml
 
-COPY /root/webapp/mysql-connector.jar lib/mysql-connector.jar
+COPY mysql-connector.jar lib/mysql-connector.jar
 
 EXPOSE 8080
 
