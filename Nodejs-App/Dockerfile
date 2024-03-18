@@ -1,4 +1,4 @@
-FROM node::alpine
+FROM node:alpine
 
 LABEL Folder="Nodejs-App"
 LABEL Author="Mayur"
