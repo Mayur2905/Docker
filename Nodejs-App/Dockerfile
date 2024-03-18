@@ -9,6 +9,8 @@ COPY . .
 
 RUN npm install
 
+RUN npm run database
+
 RUN npm start
 
 EXPOSE 3000
