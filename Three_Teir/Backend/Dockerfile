@@ -17,7 +17,7 @@ WORKDIR /opt/apache-tomcat-8.5.99/
 
 COPY /root/webapp/student.war webapps/student.war
 
-ADD https://github.com/AnupDudhe/DockerImage_studentapp_threetier/blob/main/Backend/context.xml conf/context.xml
+ADD context.xml conf/context.xml
 
 COPY /root/webapp/mysql-connector.jar lib/mysql-connector.jar
 
