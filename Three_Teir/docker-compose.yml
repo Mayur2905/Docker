@@ -1,5 +1,13 @@
 version: '3.8'
 
+networks:
+  mynetwork:
+    driver: bridge
+volumes:
+  newvolume1:
+  newvolume2:
+  newvolume3:
+
 services :
   databaseimg:
     build: ./database
@@ -10,7 +18,11 @@ services :
       MYSQL_PASSWORD: "1234"
     ports:
       - "3306:3306"
-    network_mode: bridge
+    # network_mode: bridge
+    networks:
+      - mynetwork
+    volumes:
+      - newvolume1:/var/lib/mysql
 
   backendimg:
     build: ./Backend
@@ -18,7 +30,11 @@ services :
       - "8080:8080"
     depends_on: 
       - databaseimg
-    network_mode: bridge
+    # network_mode: bridge
+    networks:
+      - mynetwork
+    volumes:
+      - newvolume2:/opt/apache-tomcat-8.5.99
 
   frontendimg:
     build: ./Froentend
@@ -26,5 +42,9 @@ services :
       - "80:80"
     depends_on:
       - backendimg
-    network_mode: bridge
+    # network_mode: bridge
+    networks:
+      - mynetwork
+    volumes:
+      - newvolume3:/var/www/html
     
