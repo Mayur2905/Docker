@@ -1,0 +1,30 @@
+version: '3.8'
+
+services :
+  databaseimg:
+    build: ./database
+    environment:
+      MYSQL_ROOT_PASSWORD: "1234"
+      MYSQL_DATABASE: "studentapp"
+      MYSQL_USER: "mayur"
+      MYSQL_PASSWORD: "1234"
+    ports:
+      - "3306:3306"
+    network_mode: bridge
+
+  backendimg:
+    build: ./Backend
+    ports:
+      - "8080:8080"
+    depends_on: 
+      - databaseimg
+    network_mode: bridge
+
+  frontendimg:
+    build: ./Froentend
+    ports:
+      - "80:80"
+    depends_on:
+      - backendimg
+    network_mode: bridge
+    
