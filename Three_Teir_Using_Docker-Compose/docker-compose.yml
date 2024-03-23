@@ -47,4 +47,3 @@ services :
       - mynetwork
     volumes:
       - newvolume3:/var/www/html
-    
