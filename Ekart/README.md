@@ -1,167 +1,53 @@
-# Spring Boot Shopping Cart Web App
+# Jenkins Pipeline for Ekart Application
+This Jenkins pipeline automates the build, test, and deployment process for the Ekart application.
 
-## About
+## Prerequisites
+- Jenkins installed and configured
+- Docker installed on Jenkins server
+- Jenkins credentials for Docker registry (77568)
+## Steps to Implement
+ 1. ### Add Tools in Jenkins
+    - Go to Jenkins dashboard and navigate to ```Manage Jenkins > Global Tool Configuration```.
+    - Add JDK and Maven installations:
+        - JDK:
+            - Name: **openjdk11**
+            - Install automatically
+        - Maven:
+            - Name: **Maven**
+            - Install automatically
 
-This is a demo project for practicing Spring + Thymeleaf. The idea was to build some basic shopping cart web app.
+2. ### Create Jenkins Pipeline
+    - Go to Jenkins dashboard and create a new pipeline job.
+    - Paste the provided pipeline script into the pipeline script section.
 
-It was made using **Spring Boot**, **Spring Security**, **Thymeleaf**, **Spring Data JPA**, **Spring Data REST and Docker**. 
-Database is in memory **H2**.
+3. ### Add Node 
+    -  To run the pipeline on a specific node, modify the agent section in the pipeline script to specify the label of the node.
+    
+4. ### Run the Pipeline
+    - Trigger the pipeline manually or configure it to run automatically on SCM changes
 
-There is a login and registration functionality included.
+## Pipeline Description
 
-Users can shop for products. Each user has his own shopping cart (session functionality).
-Checkout is transactional.
+1. **Configure Tools in Jenkins**
+    - Configure the JDK tool in Jenkins and name it 'openjdk11'.
+    - Configure the Maven tool in Jenkins and name it 'Maven'.
 
-## Configuration
+2. **Create Docker Registry Credentials**
+    - In Jenkins, navigate to ```Manage Jenkins > Manage Credentials > Jenkins > Global credentials``` and add a new credential for Docker registry with ID '77568'.
 
-### Configuration Files
+3. **Git Checkout Stage**
+    - This stage checks out the main branch of the Ekart application repository.
 
-Folder **src/resources/** contains config files for **shopping-cart** Spring Boot application.
+4.  **Compile Stage**
+    - This stage compiles the Ekart application using Maven, skipping tests.
 
-* **src/resources/application.properties** - main configuration file. Here it is possible to change admin username/password,
-as well as change the port number.
-
-## How to run
-
-There are several ways to run the application. You can run it from the command line with included Maven Wrapper, Maven or Docker. 
-
-Once the app starts, go to the web browser and visit `http://localhost:8070/home`
-
-Admin username: **admin**
-
-Admin password: **admin**
-
-User username: **user**
-
-User password: **password**
-
-### Maven Wrapper
-
-#### Using the Maven Plugin
-
-Go to the root folder of the application and type:
-```bash
-$ chmod +x scripts/mvnw
-$ scripts/mvnw spring-boot:run
-```
-
-#### Using Executable Jar
-
-Or you can build the JAR file with 
-```bash
-$ scripts/mvnw clean package
-``` 
-
-Then you can run the JAR file:
-```bash
-$ java -jar target/shopping-cart-0.0.1-SNAPSHOT.jar
-```
-
-### Maven
-
-Open a terminal and run the following commands to ensure that you have valid versions of Java and Maven installed:
-
-```bash
-$ java -version
-java version "1.8.0_102"
-Java(TM) SE Runtime Environment (build 1.8.0_102-b14)
-Java HotSpot(TM) 64-Bit Server VM (build 25.102-b14, mixed mode)
-```
-
-```bash
-$ mvn -v
-Apache Maven 3.3.9 (bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-10T16:41:47+00:00)
-Maven home: /usr/local/Cellar/maven/3.3.9/libexec
-Java version: 1.8.0_102, vendor: Oracle Corporation
-```
-
-#### Using the Maven Plugin
-
-The Spring Boot Maven plugin includes a run goal that can be used to quickly compile and run your application. 
-Applications run in an exploded form, as they do in your IDE. 
-The following example shows a typical Maven command to run a Spring Boot application:
- 
-```bash
-$ mvn spring-boot:run
-``` 
-
-#### Using Executable Jar
-
-To create an executable jar run:
-
-```bash
-$ mvn clean package
-``` 
-
-To run that application, use the java -jar command, as follows:
-
-```bash
-$ java -jar target/shopping-cart-0.0.1-SNAPSHOT.jar
-```
-
-To exit the application, press **ctrl-c**.
-
-### Docker
-
-It is possible to run **shopping-cart** using Docker:
-
-Build Docker image:
-```bash
-$ mvn clean package
-$ docker build -t shopping-cart:dev -f docker/Dockerfile .
-```
-
-Run Docker container:
-```bash
-$ docker run --rm -i -p 8070:8070 \
-      --name shopping-cart \
-      shopping-cart:dev
-```
-
-##### Helper script
-
-It is possible to run all of the above with helper script:
-
-```bash
-$ chmod +x scripts/run_docker.sh
-$ scripts/run_docker.sh
-```
-
-## Docker 
-
-Folder **docker** contains:
-
-* **docker/shopping-cart/Dockerfile** - Docker build file for executing shopping-cart Docker image. 
-Instructions to build artifacts, copy build artifacts to docker image and then run app on proper port with proper configuration file.
-
-## Util Scripts
-
-* **scripts/run_docker.sh.sh** - util script for running shopping-cart Docker container using **docker/Dockerfile**
-
-## Tests
-
-Tests can be run by executing following command from the root of the project:
-
-```bash
-$ mvn test
-```
-
-## Helper Tools
-
-### HAL REST Browser
-
-Go to the web browser and visit `http://localhost:8070/`
-
-You will need to be authenticated to be able to see this page.
-
-### H2 Database web interface
-
-Go to the web browser and visit `http://localhost:8070/h2-console`
-
-In field **JDBC URL** put 
-```
-jdbc:h2:mem:shopping_cart_db
-```
-
-In `/src/main/resources/application.properties` file it is possible to change both
-web interface url path, as well as the datasource url.
+5.  **OWASP Dependency Check Stage**
+    - This stage performs a security vulnerability check on the application's dependencies using OWASP Dependency Check.
+6. **Unit Testing Stage**
+    - This stage runs unit tests for the application, skipping the integration tests.
+7. **Build Stage**
+    - This stage builds a Docker image for the Ekart application and pushes it to the Docker registry.
+8. **Deploy Stage**
+   - This stage deploys the Ekart application by running a Docker container with the built image.
+## Author
+   - Mayur Gaikwad
